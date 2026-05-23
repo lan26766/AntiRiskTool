@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模拟器兼容列表 | 隐盾 - 多开环境隔离</title>
+<meta name="description" content="隐盾 - 多开环境隔离支持14类主流模拟器，覆盖国内所有常用安卓模拟器品牌的进程识别与独立IP绑定。游戏工作室多开防封必备。">
+<meta name="keywords" content="模拟器兼容列表,隐盾,模拟器多开防封,单窗口单IP,游戏工作室防封">
+<meta name="robots" content="index, follow">
+<meta name="author" content="隐盾">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #0a0e17; color: #f1f5f9; line-height: 1.8; }
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,14,23,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(99,102,241,0.2); padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.navbar-logo { font-size: 20px; font-weight: 800; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.navbar a { color: #a5b4fc; text-decoration: none; font-size: 14px; }
+.navbar a:hover { color: #f1f5f9; }
+.container { max-width: 860px; margin: 0 auto; padding: 100px 24px 60px; }
+h1 { font-size: 36px; font-weight: 900; margin-bottom: 8px; }
+h1 span { background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { color: #9ca3af; font-size: 16px; margin-bottom: 40px; }
+.card { background: #111827; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 32px; margin-bottom: 24px; }
+.card h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #a5b4fc; }
+.card p { color: #9ca3af; font-size: 15px; margin-bottom: 8px; }
+.card ul { color: #9ca3af; font-size: 15px; padding-left: 20px; }
+.card ul li { margin-bottom: 6px; }
+.highlight-box { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; padding: 20px 24px; margin: 32px 0; }
+.highlight-box p { color: #6ee7b7; font-size: 15px; font-weight: 600; }
+.note { color: #6b7280; font-size: 13px; margin-top: 24px; }
+.footer-nav { text-align: center; padding: 40px 0; }
+.footer-nav a { color: #a5b4fc; text-decoration: none; }
+@media (max-width: 640px) {
+  h1 { font-size: 28px; }
+  .container { padding-top: 80px; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar-logo">🛡️ 隐盾</div>
+  <a href="index.html">← 返回首页</a>
+</nav>
+
+<div class="container">
+  <h1><span>模拟器兼容性说明</span></h1>
+  <p class="subtitle">隐盾 - 多开环境隔离 · 14类主流模拟器全覆盖</p>
+
+  <div class="card">
+    <h2>📋 兼容范围</h2>
+    <p>从程序进程识别的角度，隐盾已经覆盖了国内所有主流安卓模拟器的进程名、窗口类名和引擎特征，共计 <strong style="color:#6ee7b7">14 类</strong>主流模拟器品牌与变体版本。</p>
+    <ul>
+      <li>所有主流安卓模拟器的进程自动识别与独立IP绑定</li>
+      <li>支持模拟器多开窗口一一对应不同代理IP</li>
+      <li>断网智能锁网，防止模拟器窗口漏出真实IP</li>
+      <li>IP失效自动切换，无需手动干预</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔍 如何获取兼容清单</h2>
+    <p>为保护用户隐私和商业安全，详细的品牌级兼容清单不在此公开页面展示。如需获取最新兼容信息，请通过以下任一方式：</p>
+    <ul>
+      <li>在搜索引擎搜索「<strong style="color:#a5b4fc">隐盾 模拟器兼容列表</strong>」</li>
+      <li>下载软件后在主界面查看「进程识别」功能</li>
+      <li>联系客服获取最新兼容性报告</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🛠 技术原理</h2>
+    <p>隐盾通过以下技术手段实现模拟器进程的精准识别：</p>
+    <ul>
+      <li><strong>进程名匹配</strong>：识别模拟器主进程与子进程名称特征</li>
+      <li><strong>窗口类名识别</strong>：匹配模拟器渲染窗口的类名标识</li>
+      <li><strong>引擎特征检测</strong>：识别 VirtualBox / Hyper-V 等虚拟化引擎指纹</li>
+      <li><strong>端口与服务扫描</strong>：检测模拟器的 ADB 端口与后台服务</li>
+    </ul>
+    <p style="margin-top:12px">每类模拟器的多个版本、多个变体均自动兼容，无需用户手动配置。</p>
+  </div>
+
+  <div class="highlight-box">
+    <p>🟢 14类主流模拟器全覆盖 · 多开窗口IP全面隔离 · 断网智能锁网防漏IP · 绑定后全自动运行</p>
+  </div>
+
+  <p class="note">
+    ※ 本页面仅说明兼容范围，不涉及任何第三方品牌的具体产品信息。
+    如需验证兼容性，请下载软件后使用免费试用期进行测试。
+  </p>
+
+  <div class="footer-nav">
+    <a href="index.html">← 返回隐盾首页</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隐盾 - 多开环境隔离 | 游戏工作室 · 电商多店铺网络隔离工具 | 单窗口单IP | 硬件指纹伪装</title>
+<meta name="description" content="隐盾进程网络隔离工具，专为多进程多账号并行运行场景打造。支持单窗口独立IP分配、硬件指纹伪装、IP代理池定时切换。横跨游戏工作室多开运维与电商多店铺矩阵运营两大场景，一站式解决多账号网络环境隔离问题。">
+<meta name="keywords" content="多开环境隔离,单窗口单IP,硬件指纹伪装,进程网络隔离,游戏工作室多开,电商多店铺运营,IP代理池,模拟器多开独立IP,设备指纹修改,多账号网络隔离,淘宝店铺多开,拼多多多店铺,抖音小店多账号,小红书多店铺运营">
+<meta name="robots" content="index, follow">
+<meta name="baidu-site-verification" content="YOUR_BAIDU_VERIFICATION_CODE">
+<link rel="canonical" href="https://your-domain.com/">
+<meta property="og:title" content="隐盾 - 多开环境隔离 | 游戏工作室 · 电商多店铺网络隔离工具">
+<meta property="og:description" content="专为多进程多账号并行场景打造。单窗口独立IP分配、硬件指纹伪装、IP代理池切换。横跨游戏工作室与电商多店铺两大场景。7天体验15元。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="隐盾 - 多开环境隔离">
+<meta name="twitter:description" content="进程网络隔离 · 单窗口单IP · 硬件指纹伪装 · 游戏&电商双场景 · 7天体验15元">
+<meta name="author" content="隐盾">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #0a0e17; color: #f1f5f9; line-height: 1.7; }
+
+/* Navbar */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,14,23,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(99,102,241,0.2); padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.navbar-logo { font-size: 20px; font-weight: 800; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap; }
+.navbar-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; }
+.navbar-links a { color: #9ca3af; text-decoration: none; font-size: 14px; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; }
+.navbar-links a:hover { color: #f1f5f9; background: rgba(99,102,241,0.15); }
+.navbar-cta { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff !important; font-weight: 600; }
+.navbar-toggle { display: none; background: none; border: none; color: #f1f5f9; font-size: 24px; cursor: pointer; }
+
+/* Sections */
+.section { padding: 80px 24px; max-width: 1200px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 48px; }
+.section-header h2 { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+.section-header h2 span { background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.section-header p { color: #9ca3af; font-size: 18px; max-width: 700px; margin: 0 auto; }
+
+/* Hero */
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; padding: 24px; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(99,102,241,0.15) 0%, transparent 70%); }
+.hero::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%236366f1' opacity='0.3'/%3E%3C/svg%3E") repeat; opacity: .3; }
+.hero-content { position: relative; z-index: 1; max-width: 800px; }
+.hero-badge { display: inline-block; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); color: #a5b4fc; padding: 6px 18px; border-radius: 20px; font-size: 14px; font-weight: 500; margin-bottom: 24px; }
+.hero h1 { font-size: 52px; font-weight: 900; line-height: 1.2; margin-bottom: 16px; }
+.hero h1 span { background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-subtitle { font-size: 20px; color: #9ca3af; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.hero-tagline { display: inline-block; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.25); color: #6ee7b7; padding: 10px 24px; border-radius: 8px; font-size: 15px; font-weight: 600; margin-bottom: 32px; }
+.hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 14px 32px; border-radius: 12px; font-size: 16px; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; }
+.btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.5); }
+.btn-outline { border: 1px solid rgba(99,102,241,0.4); color: #a5b4fc; background: transparent; }
+.btn-outline:hover { background: rgba(99,102,241,0.1); }
+.hero-stats { display: flex; gap: 40px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+.hero-stat { text-align: center; }
+.hero-stat-num { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-stat-label { font-size: 13px; color: #6b7280; margin-top: 4px; }
+
+/* Cards */
+.card { background: #111827; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 28px; transition: all 0.3s; }
+.card:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+.icon { font-size: 32px; margin-bottom: 12px; }
+.card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.card p { color: #9ca3af; font-size: 14px; }
+
+/* Grid */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+/* Pain cards */
+.pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pain-card { background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(239,68,68,0.02)); border: 1px solid rgba(239,68,68,0.15); border-radius: 16px; padding: 28px; }
+.pain-card .pain-icon { font-size: 28px; margin-bottom: 10px; }
+.pain-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; color: #fca5a5; }
+.pain-card p { color: #9ca3af; font-size: 14px; }
+.pain-card .solution { margin-top: 12px; padding: 10px 14px; background: rgba(16,185,129,0.08); border-radius: 8px; color: #6ee7b7; font-size: 13px; font-weight: 600; }
+
+/* Feature section */
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.feature-card { background: #111827; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; transition: all 0.3s; }
+.feature-card:hover { border-color: rgba(99,102,241,0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+.feature-card-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.feature-card-body { padding: 24px; }
+.feature-card-body h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.feature-card-body p { color: #9ca3af; font-size: 14px; }
+.feature-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+.tag { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; background: rgba(99,102,241,0.12); color: #a5b4fc; }
+
+/* Table */
+.compare-table { width: 100%; border-collapse: collapse; background: #111827; border-radius: 16px; overflow: hidden; }
+.compare-table th { background: rgba(99,102,241,0.12); padding: 16px 20px; text-align: left; font-weight: 700; font-size: 15px; }
+.compare-table th:first-child { width: 18%; }
+.compare-table td { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: #9ca3af; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table .highlight { color: #6ee7b7; font-weight: 600; }
+.compare-table .versus { color: #fca5a5; }
+
+/* Accordion */
+.accordion { border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; margin-bottom: 12px; overflow: hidden; background: #111827; }
+.accordion-header { width: 100%; padding: 18px 24px; background: none; border: none; color: #f1f5f9; font-size: 16px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+.accordion-header:hover { background: rgba(99,102,241,0.06); }
+.accordion-header .arrow { transition: transform 0.3s; font-size: 12px; color: #6366f1; }
+.accordion.open .accordion-header .arrow { transform: rotate(180deg); }
+.accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.accordion.open .accordion-body { max-height: 2000px; }
+.accordion-body-inner { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.05); color: #9ca3af; font-size: 14px; line-height: 2; }
+
+/* Footer */
+.footer { text-align: center; padding: 40px 24px; border-top: 1px solid rgba(255,255,255,0.06); color: #6b7280; font-size: 13px; }
+.footer span { background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
+
+/* Pricing */
+.pricing-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.pricing-card { background: #111827; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 32px 24px; text-align: center; transition: all 0.3s; position: relative; }
+.pricing-card:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+.pricing-card.featured { border-color: #6366f1; box-shadow: 0 0 30px rgba(99,102,241,0.25); transform: scale(1.05); }
+.pricing-card.featured:hover { transform: scale(1.08); }
+.pricing-card.featured::before { content: '🔥 推荐'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.pricing-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.pricing-duration { color: #6b7280; font-size: 13px; margin-bottom: 16px; }
+.pricing-price { font-size: 36px; font-weight: 900; margin-bottom: 4px; }
+.pricing-price span { font-size: 16px; font-weight: 500; color: #9ca3af; }
+.pricing-unit { color: #9ca3af; font-size: 13px; margin-bottom: 16px; }
+.pricing-daily { background: rgba(16,185,129,0.1); color: #6ee7b7; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+.pricing-bonus { color: #fbbf24; font-size: 13px; margin-bottom: 16px; }
+.pricing-note { color: #6b7280; font-size: 12px; margin-top: 20px; }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.contact-card { background: #111827; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 32px; text-align: center; transition: all 0.3s; cursor: pointer; }
+.contact-card:hover { border-color: rgba(99,102,241,0.3); }
+.contact-card .qq-icon { font-size: 40px; margin-bottom: 12px; }
+.contact-card .qq-num { font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+.contact-card .qq-hint { font-size: 13px; color: #6b7280; }
+.contact-copied { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #10b981; color: #fff; padding: 12px 24px; border-radius: 8px; font-weight: 600; z-index: 200; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.contact-copied.show { opacity: 1; }
+.contact-disclaimer { text-align: center; color: #6b7280; font-size: 12px; margin-top: 24px; line-height: 2; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero h1 { font-size: 40px; }
+  .pain-grid, .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .pain-grid, .feature-grid, .grid-3, .grid-4 { grid-template-columns: repeat(1, 1fr); }
+  .grid-2 { grid-template-columns: repeat(1, 1fr); }
+  .pricing-grid { grid-template-columns: repeat(1, 1fr); }
+  .contact-grid { grid-template-columns: repeat(1, 1fr); }
+  .pricing-card.featured { transform: none; }
+  .navbar-links { display: none; }
+  .navbar-links.active { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: rgba(10,14,23,0.98); border-bottom: 1px solid rgba(99,102,241,0.2); padding: 16px 24px; gap: 4px; }
+  .navbar-toggle { display: block; }
+  .hero h1 { font-size: 32px; }
+  .section { padding: 60px 16px; }
+  .section-header h2 { font-size: 28px; }
+  .hero-stats { gap: 20px; }
+  .compare-table { font-size: 12px; }
+  .compare-table th, .compare-table td { padding: 10px 12px; }
+}
+
+/* Lightbox */
+.lightbox { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.92); cursor: zoom-out; align-items: center; justify-content: center; }
+.lightbox.show { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); cursor: default; }
+.lightbox-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: #fff; font-size: 40px; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; z-index: 301; }
+.lightbox-close:hover { opacity: 1; }
+.feature-card-img { cursor: zoom-in; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-logo">🛡️ 隐盾</div>
+  <ul class="navbar-links" id="navLinks">
+    <li><a href="#hero">首页</a></li>
+    <li><a href="#features">功能</a></li>
+    <li><a href="#scenarios">场景</a></li>
+    <li><a href="#audience">适用人群</a></li>
+    <li><a href="#compare">对比</a></li>
+    <li><a href="#pricing">价格</a></li>
+    <li><a href="#manual">手册</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">联系</a></li>
+    <li><a href="software.zip" class="navbar-cta" download>⬇ 下载软件</a></li>
+  </ul>
+  <button class="navbar-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')">☰</button>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🛡️ 多进程网络隔离工具 · 游戏&电商双场景 · v1.0</div>
+    <h1><span>隐盾 - 多开环境隔离</span></h1>
+    <p class="hero-subtitle">专为多进程、多账号并行运行场景打造。支持单窗口独立网络通道、硬件指纹伪装、IP代理池定时切换。兼容游戏工作室多开运维与电商多店铺矩阵运营，一站式解决多账号网络环境隔离问题。</p>
+    <div class="hero-tagline">⚡ 进程级网络隔离 · 断线智能锁网 · 代理线路自动切换 · 低延迟稳定传输</div>
+    <div class="hero-cta">
+      <a href="software.zip" class="btn btn-primary" download>⬇ 免费下载</a>
+      <a href="#features" class="btn btn-outline">了解功能</a>
+      <a href="#pricing" class="btn btn-outline">查看价格</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">9</div><div class="hero-stat-label">大类硬件伪装</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">17</div><div class="hero-stat-label">项深度痕迹清理</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">项系统身份重置</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">14</div><div class="hero-stat-label">类模拟器支持</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">双</div><div class="hero-stat-label">场景覆盖</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 产品概述 -->
+<section class="section" id="overview" style="background: rgba(17,24,39,0.4);">
+  <div class="section-header">
+    <h2>📋 <span>产品概述</span></h2>
+    <p>隐盾进程网络隔离工具，专为多进程、多账号并行运行场景打造</p>
+  </div>
+  <div style="max-width:800px; margin:0 auto; text-align:center; color:#9ca3af; font-size:15px; line-height:2;">
+    <p>依托独立线路分配技术，实现单窗口专属网络通道。支持批量线路配置、节点自动核验、断线自主重连，网络运行稳定低延迟。</p>
+    <p style="margin-top:16px;">产品兼容性广泛，既可满足游戏多进程运维需求，也适配电商多店铺矩阵运营场景，一站式解决多账号同网络运行带来的环境干扰问题，助力用户高效稳定开展日常运营工作。</p>
+  </div>
+</section>
+
+<!-- Pain Points -->
+<section class="section" id="pain">
+  <div class="section-header">
+    <h2>游戏工作室 & 电商运营的<span>痛点</span>，我们都懂</h2>
+    <p>每一个问题都有对应的解决方案，一站式解决多账号运营环境隔离问题</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-icon">😰</div><h3>多窗口同环境运行怎么解决</h3>
+      <p>平台检测到多账号跑在同一台机器上，硬件指纹相同，被识别为同设备批量操作</p>
+      <div class="solution">✅ 一键换机：9类硬件标识随机生成，每个号都是独立电脑</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">😰</div><h3>注册环境重复受限</h3>
+      <p>系统身份标识重复，被平台判定为同设备</p>
+      <div class="solution">✅ 6项系统身份一键重置，每次注册都是全新系统</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">😰</div><h3>多账号共用IP被关联</h3>
+      <p>几十个号走同一个出口IP，平台识别为同网络批量操作</p>
+      <div class="solution">✅ IP代理池 + 定时自动切换，每个号独立IP，游戏多开IP隔离</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">😰</div><h3>代理断了怎么防止漏IP</h3>
+      <p>代理断了流量直走本机IP，网络环境立刻暴露真实信息</p>
+      <div class="solution">✅ 断线智能锁网：代理断开自动阻断网络，绝不漏真实IP</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">😰</div><h3>浏览器残留痕迹未清理</h3>
+      <p>硬件换了IP换了，Cookie/LocalStorage还在</p>
+      <div class="solution">✅ 17项深度痕迹清理，Chrome/Edge/Firefox全覆盖，浏览器指纹伪装</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">😰</div><h3>手动操作太累</h3>
+      <p>每个号手动换配置，一天几百号运营累到崩溃</p>
+      <div class="solution">✅ 全自动换号工具：定时循环，挂机就能跑，一人管几十台</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">🏪</div><h3>多店铺同网络运营被关联</h3>
+      <p>多个淘宝/拼多多/抖音店铺在同一网络下运营，平台判定为同一经营者，影响店铺权重分配</p>
+      <div class="solution">✅ 每个店铺分配独立IP通道，网络环境相互隔离，降低关联风险</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">🔄</div><h3>多账号频繁切换效率低</h3>
+      <p>运营十几个店铺账号，每次切换需要重新登录、更换网络环境，耗时耗力</p>
+      <div class="solution">✅ 批量绑定进程与IP，一窗一IP自动运行，无需手动切换</div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section" id="features" style="background: rgba(17,24,39,0.4);">
+  <div class="section-header">
+    <h2>六大<span>核心功能</span></h2>
+    <p>从硬件到网络，从痕迹到自动化，覆盖游戏工作室与电商多场景需求</p>
+  </div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <img class="feature-card-img" src="Image/设备标识调整.png" alt="隐盾 硬件指纹伪装 - 9大类设备标识修改" onclick="openLightbox(this)">
+      <div class="feature-card-body">
+        <h3>🔧 硬件指纹伪装</h3>
+        <p>9大类硬件随机生成：CPU/主板/显卡/硬盘/MAC/内存/BIOS/显示器/系统信息，平台看到的就是一台真实存在的不同电脑。多开场景硬件信息怎么改？一键搞定。</p>
+        <div class="feature-tags"><span class="tag">9类硬件</span><span class="tag">智能生成</span><span class="tag">一键还原</span><span class="tag">MAC地址随机修改</span></div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <img class="feature-card-img" src="Image/全局代理设置.png" alt="隐盾 IP代理池管理 - SOCKS5代理批量检测与断网保护" onclick="openLightbox(this)">
+      <div class="feature-card-body">
+        <h3>🌐 IP代理池管理</h3>
+        <p>批量导入/并发测速/定时自动切换。HTTP+SOCKS5双协议，断线智能锁网防泄露，DNS+UDP全代理。</p>
+        <div class="feature-tags"><span class="tag">批量检测</span><span class="tag">断网保护</span><span class="tag">自动切换</span><span class="tag">SOCKS5代理模拟器</span></div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <img class="feature-card-img" src="Image/痕迹一键清理.png" alt="隐盾 17项深度痕迹清理 - 浏览器缓存Cookie历史与主流模拟器缓存清理" onclick="openLightbox(this)">
+      <div class="feature-card-body">
+        <h3>🧹 17项深度痕迹清理</h3>
+        <p>浏览器缓存/Cookie/历史全覆盖主流浏览器（Chrome/Edge/Firefox）。主流模拟器缓存一站式清理。模拟器缓存清理工具，多开环境防护必备。</p>
+        <div class="feature-tags"><span class="tag">浏览器痕迹</span><span class="tag">模拟器缓存</span><span class="tag">系统日志</span></div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <img class="feature-card-img" src="Image/隐私防护首页.png" alt="隐盾 定时自动挂机 - 全自动循环换号换IP换硬件" onclick="openLightbox(this)">
+      <div class="feature-card-body">
+        <h3>⏱️ 定时自动挂机</h3>
+        <p>设定间隔自动循环：清痕迹→换身份→换硬件→换代理。随机浮动防固定规律，已完成数百次循环验证。</p>
+        <div class="feature-tags"><span class="tag">全自动</span><span class="tag">随机浮动</span><span class="tag">循环执行</span></div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <img class="feature-card-img" src="Image/多套配置管理.png" alt="隐盾 方案库自由组合 - 硬件指纹方案批量生成与导入导出" onclick="openLightbox(this)">
+      <div class="feature-card-body">
+        <h3>📁 方案库自由组合</h3>
+        <p>硬件方案+代理方案独立保存，自由组合一键切换。导入导出共享配置，批量生成1-50个随机方案。</p>
+        <div class="feature-tags"><span class="tag">方案保存</span><span class="tag">自由组合</span><span class="tag">导入导出</span></div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <img class="feature-card-img" src="Image/单窗口单IP代理.png" alt="隐盾 单窗口单IP代理 - 14类主流模拟器进程识别与独立IP绑定" onclick="openLightbox(this)">
+      <div class="feature-card-body">
+        <h3>🪟 单窗口单IP代理</h3>
+        <p>模拟器多开利器。自动识别14类主流模拟器进程，每个窗口绑定独立IP，多开窗口IP全面隔离，全品牌模拟器进程全兼容。</p>
+        <div class="feature-tags"><span class="tag">进程识别</span><span class="tag">批量分配</span><span class="tag">自动替换</span><span class="tag">模拟器多开隔离</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Scenarios -->
+<section class="section" id="scenarios">
+  <div class="section-header">
+    <h2>五大<span>典型场景</span></h2>
+    <p>游戏工作室 · 电商运营，总有一套方案适合你</p>
+  </div>
+  <div class="grid-4">
+    <div class="card">
+      <div class="icon">📱</div>
+      <h3>游戏多开独立IP运维</h3>
+      <p>母机多开模拟器，每个窗口分配独立IP通道，各进程网络环境相互隔离。支持14类主流模拟器自动识别，窗口级别IP分配与断线自动重连。</p>
+    </div>
+    <div class="card">
+      <div class="icon">🖥️</div>
+      <h3>批量账号日常运维</h3>
+      <p>批量绑定进程与线路，自动循环清理痕迹→重置身份→切换线路。一人管理多台设备，降低多账号运维工作量。</p>
+    </div>
+    <div class="card">
+      <div class="icon">🛒</div>
+      <h3>电商多店铺矩阵运营</h3>
+      <p>适配淘宝、拼多多、抖音小店、小红书商城等主流平台。多个店铺后台分开配置独立网络环境，防止同IP运营产生的关联影响，维护店铺独立运营权重。</p>
+    </div>
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>多账号内容运营</h3>
+      <p>适合店铺日常上架打理、商品数据浏览、多账号内容发布、店铺矩阵统筹管理。批量化管理替代手动切换，一人轻松打理多家店铺。</p>
+    </div>
+  </div>
+  <div style="max-width:1200px; margin:24px auto 0; padding:0 24px;">
+    <div class="card" style="text-align:center;">
+      <div class="icon">🎯</div>
+      <h3>自媒体多平台账号管理</h3>
+      <p style="max-width:700px;margin:0 auto;">适配多平台多账号运营场景，每个账号配置独立网络环境，安全隔离互不干扰，适合自媒体矩阵运营、多平台内容同步发布等工作。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 适用人群 -->
+<section class="section" id="audience">
+  <div class="section-header">
+    <h2>🎯 <span>适用人群</span></h2>
+    <p>横跨游戏运维与电商运营，一台工具满足多种业务需求</p>
+  </div>
+  <div class="grid-4">
+    <div class="card">
+      <div class="icon">🎮</div>
+      <h3>游戏工作室从业者</h3>
+      <p>批量账号运维人员，需要多开模拟器、多窗口同时在线，每个窗口独立网络环境的用户。</p>
+    </div>
+    <div class="card">
+      <div class="icon">🛒</div>
+      <h3>电商多店铺店主</h3>
+      <p>同时运营淘宝/拼多多/抖音/小红书等多个店铺，需要分开管理网络环境的运营者。</p>
+    </div>
+    <div class="card">
+      <div class="icon">📱</div>
+      <h3>自媒体多账号运营</h3>
+      <p>多平台多账号矩阵运营从业者，需要为每个账号维护独立网络访问环境的用户。</p>
+    </div>
+    <div class="card">
+      <div class="icon">💼</div>
+      <h3>多窗口办公用户</h3>
+      <p>日常需要多窗口、多进程同时在线，追求网络环境独立性与稳定性的办公人群。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 产品优势 -->
+<section class="section" id="advantages" style="background: rgba(17,24,39,0.4);">
+  <div class="section-header">
+    <h2>⭐ <span>产品使用优势</span></h2>
+  </div>
+  <div class="pain-grid">
+    <div class="card">
+      <div class="icon">📖</div>
+      <h3>操作简易易懂</h3>
+      <p>可视化操作界面，功能分区清晰，新手也能快速上手配置线路，日常管理简单省心。</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔒</div>
+      <h3>安全环境分隔</h3>
+      <p>各账号运行环境互不干扰，减少共用网络带来的运营隐患。</p>
+    </div>
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h3>高效省时省力</h3>
+      <p>批量化管理功能替代重复手动操作，大批量账号、店铺运维工作，均可快速完成线路部署。</p>
+    </div>
+    <div class="card">
+      <div class="icon">🌐</div>
+      <h3>通用性强覆盖面广</h3>
+      <p>横跨游戏运维、电商运营两大主流使用领域，一台工具满足多种业务使用需求，性价比出众。</p>
+    </div>
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3>后台稳定运维</h3>
+      <p>后台持续优化节点资源，定期维护线路质量，长期使用依旧保持良好的网络运行状态。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Compare -->
+<section class="section" id="compare" style="background: rgba(17,24,39,0.4);">
+  <div class="section-header">
+    <h2>为什么<span>选择我们</span></h2>
+  </div>
+  <div style="overflow-x:auto;">
+    <table class="compare-table">
+      <tr><th>对比维度</th><th>市面常见工具</th><th>隐盾</th></tr>
+      <tr><td>场景覆盖</td><td class="versus">仅游戏或仅电商单一场景</td><td class="highlight">游戏+电商双场景一站式覆盖</td></tr>
+      <tr><td>硬件伪装深度</td><td class="versus">改个MAC、改个机器名</td><td class="highlight">9大类硬件 + 6项系统身份 全改</td></tr>
+      <tr><td>代理集成</td><td class="versus">需要单独配代理工具</td><td class="highlight">内置IP池，定时切换 + 断网保护</td></tr>
+      <tr><td>自动化</td><td class="versus">手动逐个操作</td><td class="highlight">全自动循环，挂机就能跑</td></tr>
+      <tr><td>模拟器支持</td><td class="versus">不管模拟器</td><td class="highlight">14类模拟器识别 + 缓存清理</td></tr>
+      <tr><td>多窗口代理</td><td class="versus">不支持</td><td class="highlight">单窗口单IP，独立隔离</td></tr>
+      <tr><td>数据安全</td><td class="versus">可能回传数据</td><td class="highlight">纯本地运行，不上传任何数据</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <div class="section-header">
+    <h2>💎 <span>定价方案</span></h2>
+    <p>设备绑定授权，支持重装系统后免费换绑</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-name">7天体验卡</div>
+      <div class="pricing-duration">适合体验试用</div>
+      <div class="pricing-price"><span>¥</span>15</div>
+      <div class="pricing-unit">/ 7天</div>
+      <div class="pricing-daily">≈ 2.14元/天</div>
+      <div class="pricing-bonus">低价体验 · 试用无忧</div>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-name">月卡</div>
+      <div class="pricing-duration">灵活包月</div>
+      <div class="pricing-price"><span>¥</span>45</div>
+      <div class="pricing-unit">/ 30天</div>
+      <div class="pricing-daily">≈ 1.50元/天</div>
+      <div class="pricing-bonus">灵活包月 · 随时续费</div>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-name">季卡</div>
+      <div class="pricing-duration">超值季度</div>
+      <div class="pricing-price"><span>¥</span>120</div>
+      <div class="pricing-unit">/ 90天</div>
+      <div class="pricing-daily">≈ 1.33元/天</div>
+      <div class="pricing-bonus">🎁 额外赠送15天</div>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-name">半年卡</div>
+      <div class="pricing-duration">半年省心</div>
+      <div class="pricing-price"><span>¥</span>199</div>
+      <div class="pricing-unit">/ 180天</div>
+      <div class="pricing-daily">≈ 1.10元/天</div>
+      <div class="pricing-bonus">🎁 额外赠送41天</div>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-name">年卡</div>
+      <div class="pricing-duration">年度最优</div>
+      <div class="pricing-price"><span>¥</span>269</div>
+      <div class="pricing-unit">/ 365天</div>
+      <div class="pricing-daily">≈ 0.74元/天</div>
+      <div class="pricing-bonus">🎁 额外赠送95天</div>
+    </div>
+  </div>
+  <p class="pricing-note" style="text-align:center;">🛡️ 设备绑定授权 · 支持重装系统后免费换绑 · 纯本地运行不上传数据</p>
+</section>
+
+<!-- Manual -->
+<section class="section" id="manual">
+  <div class="section-header">
+    <h2>使用<span>操作手册</span></h2>
+  </div>
+
+  <div class="accordion" id="acc1">
+    <button class="accordion-header" onclick="toggleAccordion('acc1')">📦 安装与激活 <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <p><strong>系统要求：</strong>Windows 10 / 11（64位），必须以管理员身份运行，.NET 8.0运行时。</p>
+      <p><strong>安装：</strong>解压后右键 AntiRiskTool.exe → 以管理员身份运行 → 输入激活码 → 自动环境检测。</p>
+      <p><strong>命令行模式：</strong>支持 <code>protect</code>（一键防护）、<code>restore</code>（恢复）、<code>random</code>（随机生成）、<code>batch</code>（批量生成）、<code>read</code>（读取硬件）、<code>force-restore</code>（强制还原）等参数。</p>
+    </div></div>
+  </div>
+
+  <div class="accordion" id="acc2">
+    <button class="accordion-header" onclick="toggleAccordion('acc2')">🏠 一键操作（隐私防护首页） <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <p>点击<strong>"一键启动隐私防护模式"</strong>，自动执行：清理浏览器痕迹 → 重置系统身份 → 调整设备标识 → 环境安全检测。失败自动回滚。</p>
+      <p>自动化挂机：设置间隔、勾选执行项、点击"启动自动防护"，即可自动循环运行。</p>
+    </div></div>
+  </div>
+
+  <div class="accordion" id="acc3">
+    <button class="accordion-header" onclick="toggleAccordion('acc3')">🔧 设备标识调整 <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <p>9张硬件卡片，左=原始值，右=伪装值。操作流程：重新读取 → 智能生成 → 应用 → 保存方案。</p>
+      <p>支持方案管理面板：导入/导出/批量生成/一键应用。</p>
+    </div></div>
+  </div>
+
+  <div class="accordion" id="acc4">
+    <button class="accordion-header" onclick="toggleAccordion('acc4')">🌐 全局代理设置 <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <p><strong>导入IP：</strong>粘贴 IP:端口 或 socks5://IP:端口:用户名:密码 格式批量导入。</p>
+      <p><strong>检测：</strong>点"批量检测代理IP"并发测速，状态分为全功能正常/基础连通/认证失效/失效。</p>
+      <p><strong>启动：</strong>确保有可用节点 → 点"启用代理" → 查看状态面板确认。</p>
+      <p><strong>⚠️ 断网保护：</strong>代理断开后网络自动锁定，这是防泄露真实IP的安全机制。检查代理 → 切换新IP → 解除锁定。</p>
+    </div></div>
+  </div>
+
+  <div class="accordion" id="acc5">
+    <button class="accordion-header" onclick="toggleAccordion('acc5')">🪟 单窗口单IP代理 <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <p>用于母机多开模拟器，每窗口独立IP。<strong>注意：使用此模块前会自动停止全局代理（二者互斥）。</strong></p>
+      <p><strong>步骤：</strong>① 导入IP并检测 → ② 启动模拟器 → ③ 刷新进程列表 → ④ 勾选进程+IP → 绑定 → ⑤ 启动代理。</p>
+      <p>支持一键批量分配、一键批量重绑、替换失效IP等操作。</p>
+    </div></div>
+  </div>
+
+  <div class="accordion" id="acc6">
+    <button class="accordion-header" onclick="toggleAccordion('acc6')">🧹 痕迹一键清理 <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <p>三组清理项：<strong>浏览器痕迹</strong>（Chrome/Edge/Firefox缓存/Cookie/历史/密码）、<strong>系统日志</strong>（临时文件/事件日志/注册表/DNS/Prefetch）、<strong>应用缓存</strong>（微信QQ/模拟器/游戏平台）。</p>
+      <p>操作流程：展开分组 → 勾选 → 扫描 → 执行选中。</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="background: rgba(17,24,39,0.4);">
+  <div class="section-header">
+    <h2>常见问题<span>FAQ</span></h2>
+  </div>
+
+  <div class="accordion" id="faq1">
+    <button class="accordion-header" onclick="toggleAccordion('faq1')">Q1：软件启动提示"需要管理员权限"？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>右键 AntiRiskTool.exe → "以管理员身份运行"。修改硬件标识、系统身份、注册表、网络设置都需要管理员权限。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq2">
+    <button class="accordion-header" onclick="toggleAccordion('faq2')">Q2：代理启动后，如何确认模拟器代理已生效？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>查看"全局代理设置"页右侧"当前状态"面板，代理状态灯应为绿色。出口IP显示为代理IP而非本机IP。在浏览器访问 ip.sb 可查看出口IP。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq3">
+    <button class="accordion-header" onclick="toggleAccordion('faq3')">Q3：断线后网络被锁了怎么办？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>这是正常的安全保护行为（防止泄露真实IP）。解除步骤：检查代理IP是否过期 → 点击"切换下一个"或手动选新IP → 点击"解除网络锁定"。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq4">
+    <button class="accordion-header" onclick="toggleAccordion('faq4')">Q4：硬件伪装后会不会影响电脑正常使用？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>不会。伪装是通过注册表实现的，不影响硬件实际性能。如需还原，点击"恢复原始标识"即可（计算机名需重启生效）。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq5">
+    <button class="accordion-header" onclick="toggleAccordion('faq5')">Q5：设备指纹修改器会联网上传数据吗？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>不会。所有配置和方案存储在本地 AppData 目录。代理检测仅向代理服务器发请求，不经过任何第三方服务器。纯本地运行，不上传任何数据。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq6">
+    <button class="accordion-header" onclick="toggleAccordion('faq6')">Q6：一批IP节点怎么快速筛选可用的？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>在"全局代理设置"点击"批量检测代理IP"，会并发测速所有节点。全功能正常（推荐）可直接使用，基础连通可用于模拟器/游戏纯流量场景，失效节点可一键清理。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq7">
+    <button class="accordion-header" onclick="toggleAccordion('faq7')">Q7：如何购买激活码？有什么套餐？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>联系客服QQ：30913789 或 2338125197 获取激活码。提供5种套餐：7天体验卡15元、月卡45元、季卡120元（送15天）、半年卡199元（送41天）、年卡269元（送95天）。设备绑定授权，支持重装后免费换绑。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq8">
+    <button class="accordion-header" onclick="toggleAccordion('faq8')">Q8：系统标识重置（文字标签去除）支持哪些标识？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>支持8项系统身份标识重置：MachineGuid（系统唯一标识）、MachineId（设备身份编码）、ProductId（系统版本标识）、计算机名、MAC地址、HardwareProfileGuid（硬件配置标识）、系统安装日期。另可单独重置每项或恢复原始值。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq9">
+    <button class="accordion-header" onclick="toggleAccordion('faq9')">Q9：支持哪些模拟器？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>支持14类主流模拟器，<strong>覆盖国内所有常用安卓模拟器品牌</strong>。具体兼容列表请在搜索引擎搜索「<strong>隐盾 模拟器兼容列表</strong>」获取最新信息。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq10">
+    <button class="accordion-header" onclick="toggleAccordion('faq10')">Q10：电商多店铺运营需要多少个IP？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>每个店铺建议分配1个独立IP。隐盾支持按进程/窗口级别分配独立IP通道，店铺数量与IP数量一一对应即可。IP资源由用户自行采购，软件不提供IP线路服务。</p></div></div>
+  </div>
+
+  <div class="accordion" id="faq11">
+    <button class="accordion-header" onclick="toggleAccordion('faq11')">Q11：支持哪些电商平台？ <span class="arrow">▼</span></button>
+    <div class="accordion-body"><div class="accordion-body-inner"><p>隐盾工作在系统网络层，理论上支持所有基于TCP/IP协议的电商平台，包括淘宝、天猫、拼多多、京东、抖音小店、小红书商城、1688、闲鱼等。只要是在Windows上通过浏览器或客户端访问的平台，均可使用进程级IP隔离功能。</p></div></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="section-header">
+    <h2>📞 <span>联系我们</span></h2>
+    <p>联系客服获取激活码 · 技术支持 · 模拟器进程名增补 · 7×24小时在线</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card" onclick="copyQQ('30913789')">
+      <div class="qq-icon">💬</div>
+      <div class="qq-num">QQ: 30913789</div>
+      <div class="qq-hint">点击复制QQ号 · 客服咨询</div>
+    </div>
+    <div class="contact-card" onclick="copyQQ('2338125197')">
+      <div class="qq-icon">💬</div>
+      <div class="qq-num">QQ: 2338125197</div>
+      <div class="qq-hint">点击复制QQ号 · 技术支持</div>
+    </div>
+  </div>
+  <p class="contact-disclaimer">免责声明：本软件仅用于修改操作系统注册表相关安全路径，不涉及任何非法用途。<br>所有操作均在用户授权范围内执行，使用者需自行遵守所在地区法律法规。</p>
+</section>
+
+<div class="contact-copied" id="copiedTip">✅ 已复制到剪贴板</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="关闭">&times;</button>
+  <img src="" alt="" id="lightboxImg">
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p><span>隐盾</span> v1.0.0 · 多开环境隔离</p>
+  <p style="margin-top:6px;">纯本地运行 · 不上传任何数据 · 专业网络环境风控防护工具</p>
+</footer>
+
+<!-- 使用温馨提示 -->
+<section class="section" style="padding: 40px 24px; background: rgba(99,102,241,0.04); border-top: 1px solid rgba(99,102,241,0.1);">
+  <div style="max-width:900px; margin:0 auto;">
+    <h3 style="font-size:16px; font-weight:700; color:#a5b4fc; margin-bottom:16px; text-align:center;">📌 使用温馨提示</h3>
+    <div style="color:#9ca3af; font-size:14px; line-height:2.2; text-align:center;">
+      <p>本软件为网络环境配置管理工具，仅提供网络线路分配、环境隔离相关技术服务。</p>
+      <p>请所有用户严格遵守各平台运营规则与互联网相关法律法规，合法合规开展账号、店铺日常运营工作，切勿用于违规操作行为。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 免责声明 -->
+<section class="section" style="padding: 32px 24px; background: rgba(239,68,68,0.04); border-top: 1px solid rgba(239,68,68,0.1);">
+  <div style="max-width: 900px; margin:0 auto; text-align:center;">
+    <h3 style="font-size:16px; font-weight:700; color:#fca5a5; margin-bottom:16px;">⚠️ 免责声明</h3>
+    <div style="color:#9ca3af; font-size:13px; line-height:2.2;">
+      <p>1. 本软件（隐盾 - 多开环境隔离）是一款合法的系统隐私防护工具，仅供用户在遵守中华人民共和国法律法规的前提下使用。</p>
+      <p>2. 本软件的功能包括但不限于：修改操作系统注册表标识信息、系统身份信息重置、网络代理设置、浏览器缓存清理等，上述功能均属操作系统层面的合法操作范畴。</p>
+      <p>3. 使用者应自行确保在符合相关平台（包括但不限于游戏平台、网络服务平台）用户协议及服务条款的前提下使用本软件。因违反平台协议而产生的账号封禁、限制等后果，由使用者自行承担。</p>
+      <p>4. 本软件所有功能均为本地运行，不会主动连接任何第三方服务器上传用户数据。用户数据的存储和使用完全由用户自行控制。</p>
+      <p>5. 使用者不得将本软件用于任何违法违规活动，包括但不限于：网络攻击、非法入侵、欺诈、侵犯他人隐私等行为。</p>
+      <p>6. 本软件开发者不承担因使用者不当使用本软件而产生的任何直接或间接责任，包括但不限于账号损失、数据丢失、法律纠纷等。</p>
+      <p>7. 软件许可一经售出概不退款（除因软件自身缺陷导致无法正常使用且经技术支持确认无法修复外），购买前请充分了解软件功能。</p>
+      <p>8. 本免责声明的最终解释权归软件开发者所有。</p>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleAccordion(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function copyQQ(qq) {
+  navigator.clipboard.writeText(qq).then(() => {
+    var tip = document.getElementById('copiedTip');
+    tip.classList.add('show');
+    setTimeout(() => tip.classList.remove('show'), 2000);
+  });
+}
+
+function openLightbox(el) {
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lightboxImg');
+  img.src = el.src;
+  img.alt = el.alt;
+  lb.classList.add('show');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('show');
+}
+
+document.querySelectorAll('.navbar-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('active');
+  });
+});
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "隐盾 - 多开环境隔离",
+  "alternateName": "进程网络隔离工具",
+  "description": "专为多进程多账号并行运行场景打造的网络隔离工具。支持游戏工作室多开运维和电商多店铺矩阵运营，单窗口独立IP分配、硬件指纹伪装、IP代理池定时切换。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "CNY",
+    "lowPrice": "15",
+    "highPrice": "269",
+    "offerCount": "5",
+    "offers": [
+      { "@type": "Offer", "name": "7天体验卡", "price": "15", "priceCurrency": "CNY" },
+      { "@type": "Offer", "name": "月卡30天", "price": "45", "priceCurrency": "CNY" },
+      { "@type": "Offer", "name": "季卡90天", "price": "120", "priceCurrency": "CNY" },
+      { "@type": "Offer", "name": "半年卡180天", "price": "199", "priceCurrency": "CNY" },
+      { "@type": "Offer", "name": "年卡365天", "price": "269", "priceCurrency": "CNY" }
+    ]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "隐盾",
+  "description": "多进程网络隔离工具，横跨游戏工作室与电商多店铺双场景",
+  "contactPoint": [
+    { "@type": "ContactPoint", "contactType": "customer service", "email": "30913789@qq.com" },
+    { "@type": "ContactPoint", "contactType": "technical support", "email": "2338125197@qq.com" }
+  ]
+}
+</script>
+</body>
+</html>
