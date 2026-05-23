@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /Image/
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://sysprivacy.cn/sitemap.xml
